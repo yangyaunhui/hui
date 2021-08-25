@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-4.0.xsd"
+>
+    <!--这是一个xml文件 也就是容器 是用来管理很多对象的 -->
+    <!--id唯一,class指向类的全名称,带上包名字的-->
+    <bean  id="date" class="java.util.Date"></bean>
+    <!--<bean  id="pc" class="spring04iocrongqi.Pc" scope="prototype"></bean>-->
+    <!--测试对象的生命周期需要单例模式-->
+    <bean  id="pc" class="spring04iocrongqi.Pc" scope="prototype" init-method="initShow" destroy-method="destoryObj"></bean>
+</beans>

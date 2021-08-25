@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+    http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd"
+>
+    <!--byName,byType区别-->
+    <!--byType:与执行属性相同的bean,自动状态根据class来注入的,如果有computer,computer2,computer3它就出错了-->
+    <!--@autowire默认是byType-->
+    <!--byName:通过id="computer"来注入的-->
+
+    <bean id="teacher" class="spring09basicdi.Teacher">
+        <property name="name" value="灰太狼"></property>
+        <property name="age" value="20"></property>
+        <property name="friendName">
+            <list>
+                <value>小灰灰</value>
+                <value>懒羊羊</value>
+                <value>喜羊羊</value>
+                <value>智羊羊</value>
+            </list>
+        </property>
+        <property name="loverName">
+            <set>
+                <value>吴宣仪</value>
+                <value>杨超越</value>
+                <value>杨颖</value>
+                <value>赵丽颖</value>
+            </set>
+        </property>
+        <property name="score">
+            <map>
+                <entry key="java" value="98"></entry>
+                <entry key="vue" value="95"></entry>
+                <entry key="jquery" value="150"></entry>
+            </map>
+        </property>
+        <property name="db">
+            <props>
+                <prop key="name">小灰灰</prop>
+                <prop key="pass">666666</prop>
+            </props>
+        </property>
+    </bean>
+    <!--读取peoperties-->
+    <util:properties id="db" location="classpath:spring09basicdi/db.properties">
+
+    </util:properties>
+    <!--取值 读取-->
+    <!--使用EL表达式读取bean前属性值-->
+    <bean id="teacherEL" class="spring09basicdi.TeacherEL">
+        <property name="name" value="#{teacher.name}"></property>
+        <property name="age" value="#{teacher.age}"></property>
+        <property name="loverName" value="#{teacher.loverName[2]}"></property>
+        <property name="friendName" value="#{teacher.friendName[2]}"></property>
+        <property name="score" value="#{teacher.score['jquery']}"></property>
+        <!--<property name="db" value="#{teacher.db['name']}"></property>-->
+        <property name="db" value="#{db['username']}"></property>
+    </bean>
+</beans>

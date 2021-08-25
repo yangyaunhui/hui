@@ -1,0 +1,8 @@
+1.String
+2.int
+3.集合 list.set.map.properties
+
+注入方式
+    1.mxl注入
+
+Spring的EL表达式${}

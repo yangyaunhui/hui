@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-4.0.xsd"
+>
+
+    <bean id="FangBianMain" class="springtest.FangBianMian"></bean>
+    <bean id="LuoShiFen" class="springtest.LuoShiFen"></bean>
+    <bean id="HuoTuiChang" class="springtest.HuoTuiChang"></bean>
+
+    <bean id="person" class="springtest.Person">
+        <property name="eatdongxi" ref="FangBianMain"></property>
+    </bean>
+
+</beans>
