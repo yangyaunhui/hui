@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+    http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-4.0.xsd
+    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd"
+    >
+    <!--byName,byType区别-->
+    <!--byType:与执行属性相同的bean,自动状态根据class来注入的,如果有computer,computer2,computer3它就出错了-->
+    <!--@autowire默认是byType-->
+    <!--byName:通过id="computer"来注入的-->
+
+    <!--<bean id="student" class="spring08autowire.Student" autowire="byType"></bean>-->
+    <bean id="student" class="spring08autowire.Student" autowire="byName"></bean>
+    <bean id="computer" class="spring08autowire.Computer"></bean>
+    <bean id="gameInterface" class="spring08autowire.Computer"></bean>
+
+</beans>

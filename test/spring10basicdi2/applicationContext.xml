@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+    http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-4.0.xsd
+    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd"
+    >
+    <!--第二种赋值-->
+    <util:list id="friendNameList">
+        <value>喜羊羊</value>
+        <value>懒羊羊</value>
+        <value>智羊羊</value>
+    </util:list>
+    <util:set id="loverNameSet">
+        <value>杨超越</value>
+        <value>杨颖</value>
+        <value>赵丽颖</value>
+        <value>吴宣仪</value>
+    </util:set>
+    <util:map id="scoreMap">
+        <entry key="java" value="80"></entry>
+    </util:map>
+    <util:properties id="dbProp">
+        <prop key="pwd">123</prop>
+    </util:properties>
+
+    <bean id="teacher2" class="spring10basicdi2.Teacher2">
+        <property name="name" value="小灰灰"></property>
+        <property name="age" value="20"></property>
+        <property name="friendName" ref="friendNameList"></property>
+        <property name="loverName" ref="loverNameSet"></property>
+        <property name="score" ref="scoreMap"></property>
+        <property name="db" ref="dbProp"></property>
+    </bean>
+</beans>
