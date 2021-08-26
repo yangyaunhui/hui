@@ -10,33 +10,36 @@
     http://www.springframework.org/schema/context/spring-context-4.0.xsd
     http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
     http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd"
-    >
+>
+<!--第一种  读取properties-->
+  <util:properties id="db" location="classpath:spring11duquprop/db.properties"></util:properties>
 
-    <!--第一次读取properties  读取-->
-    <util:properties id="db" location="classpath:spring11duquprop/db.properties"></util:properties>
-    <!--比如要配置连接池  注入-->
+    <!--配置连接池-->
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
-        <property name="password" value="#{db.pwd}"/>
-        <property name="user" value="#{db.user}"/>
-        <property name="driverClass" value="#{db.driver}"/>
-        <property name="jdbcUrl" value="#{db.url}"/>
+        <property name="password" value="#{db.pwd}"></property>
+        <property name="user" value="#{db.user}"></property>
+        <property name="driverClass" value="#{db.driver}"></property>
+        <property name="jdbcUrl" value="#{db.url}"></property>
+
     </bean>
 
-    <!--第二种读取properties-->
-    <context:property-placeholder location="classpath:spring11duquprop/dbconfig.properties"/>
+
+    <!--第二种  读取properties-->
+    <context:property-placeholder location="classpath:spring11duquprop/dbconfig.properties"></context:property-placeholder>
+    <!--配置连接池-->
     <bean id="dataSource1" class="com.mchange.v2.c3p0.ComboPooledDataSource">
-        <property name="password" value="123"/>
-        <property name="user" value="root"/>
-        <property name="driverClass" value="com.mysql.jdbc.Driver"/>
-        <property name="jdbcUrl" value="jdbc:mysql:///idea"/>
-    </bean>
+        <property name="password" value="${jdbc.password}"></property>
+        <property name="user" value="${jdbc.user}"></property>
+        <property name="driverClass" value="${jdbc.driverClass}"></property>
+        <property name="jdbcUrl" value="${jdbc.jdbcUrl}"></property>
 
-    <!--第三种读取多个properties-->
-    <context:property-placeholder ignore-unresolvable="true" location="classpath:spring11duquprop/one.properties,classpath:spring11duquprop/two.properties"/>
-    <bean id="readPropertiesBean" class="spring11duquprop.ReadPropertiesBean">
-        <property name="name" value="${one.name}"/>
-        <property name="age" value="${two.age}"/>
     </bean>
+    <!--&lt;!&ndash;第三种  读取多个 properties&ndash;&gt;-->
+    <!--<context:property-placeholder ignore-unresolvable="true" location="classpath:spring11duquprop/one.properties,classpath:spring11duquprop/two.properties"></context:property-placeholder>-->
+ <!--<bean id="readPropertiesBean" class="spring11duquprop.ReadPropertiesBean">-->
+     <!--<property name="name" value="${one.name}"></property>-->
+     <!--<property name="age" value="${two.age}"></property>-->
 
+ <!--</bean>-->
 
 </beans>
