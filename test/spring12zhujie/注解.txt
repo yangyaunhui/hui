@@ -1,0 +1,10 @@
+注解:简化xml中配置
+@Component 这个注解登录在xml中写了bean标签 <!--<bean id="human" class="spring12zhujie.Human"></bean>-->
+@Component 通用注解
+@Controller 等于 @Component  用在controller层
+@Service 等于 @Component  用在service层
+@Repository("ren")  可以起别名, 如果不起,那么这个id 就是 类名的小写.
+@Repository 等于 @Component 用在dao层  但是一般不用 因为dao层有xml映射
+            @Service @Component @Controller @Repository 四个简称四大注解
+@Scope("prototype") 加上这个注解就是原型/多例 <!--<bean id="human" class="spring12zhujie.Human" scope="prototype"></bean>-->
+@Lazy //加上就是懒加载 <!--<bean id="human" class="spring12zhujie.Human" scope="prototype" lazy-init="true"></bean>-->
