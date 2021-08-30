@@ -8,3 +8,23 @@
             @Service @Component @Controller @Repository 四个简称四大注解
 @Scope("prototype") 加上这个注解就是原型/多例 <!--<bean id="human" class="spring12zhujie.Human" scope="prototype"></bean>-->
 @Lazy //加上就是懒加载 <!--<bean id="human" class="spring12zhujie.Human" scope="prototype" lazy-init="true"></bean>-->
+
+注册bean对象
+    @Component:调用无参构造创建一个bean对象，并把对象存入spring的IOC容器	    交由spring容器进行管理。相当于在xml中配置一个bean。
+    @Controller:作用上与@Component。一般用于表现层的注解。
+    @Service:作用上与@Component。一般用于业务层的注解。
+    @Repository:作用上与@Component。一般用于持久层的注解。
+    @Bean:用于把当前方法的返回值作为bean对象存入spring的ioc容器中
+
+依赖注入
+    @Autowired:@Autowire和@Resource都是Spring支持的注解形式动态装配bean的方式。Autowire默认按照类型(byType)装配，如果想要按照名称(byName)装配，需结合@Qualifier注解使用。
+    @Qualifier:在自动按照类型注入的基础之上，再按照 Bean 的 id 注入。它在给字段注入时不能独立使用，必须和  @Autowire一起使用；但是给方法参数注入时，可以独立使用。
+    @Resource:@Autowire和@Resource都是Spring支持的注解形式动态装配bean的方式。@Resource默认按照名称(byName)装配，名称可以通过name属性指定。如果没有指定name，则注解在字段上时，默认取（name=字段名称）装配。如果注解在setter方法上时，默认取（name=属性名称）装配。
+    @Value:通过@Value可以将外部的值动态注入到Bean中，可以为基本类型数据和String类型数据的变量注入数据
+
+改变bean作用范围
+    @Scope:指定bean的作用范围。
+
+生命周期
+    @PostConstruct:指定初始化方法
+    @PreDestory:指定销毁方法
