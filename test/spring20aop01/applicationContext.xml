@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+    http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-4.0.xsd
+    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd"
+>
+    <!--切面对象，次要业务对象-->
+    <bean id="messageAspect" class="spring20aop01.MessageAspect"></bean>
+    <!--目标对象，主要业务对象-->
+    <bean id="regService" class="spring20aop01.RegServiceImpl"></bean>
+
+    <!--目的：把切面对象织入到目标对象中-->
+    <aop:config>
+        <!--切入点：可以织入的方法都叫做切入点，主要业务中的方法都是切入点-->
+        <!--连接点：切入后就是连接点-->
+        <aop:pointcut id="msgPc" expression="execution(* spring20aop01.RegService.*(..))"/>
+        <aop:aspect id="msgAspect" ref="messageAspect">
+            <!--通知分为：前置，后置，环绕，异常，最终-->
+            <!--<aop:after-returning method="sendMsg" pointcut-ref="msgPc"/>-->
+            <!--<aop:before method="sendMsg" pointcut-ref="msgPc"/>-->
+            <!--<aop:around method="roundMsg" pointcut-ref="msgPc" />-->
+            <aop:after-throwing method="sendMsgError" pointcut-ref="msgPc" throwing="e"/>
+            <aop:after method="finalMsg" pointcut-ref="msgPc"/>
+        </aop:aspect>
+    </aop:config>
+
+
+</beans>
